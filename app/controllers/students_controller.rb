@@ -5,6 +5,7 @@ class StudentsController < ApplicationController
   end
 
   def show
+    puts "reach the SHOW action"
     @student = Student.find(params[:id])
   end
 
@@ -12,6 +13,21 @@ class StudentsController < ApplicationController
   end
 
   def create
+    @student = Student.new
+    @student.first_name = params[:first_name]
+    @student.last_name = params[:last_name]
+    @student.save
+    redirect_to student_path(@student)
   end
 
 end
+
+
+# @student = Student.create(
+#   {
+#     first_name: params[:first_name],
+#     last_name: params[:last_name]
+#   }
+# )
+# @student.save
+# redirect_to student_path(@student)
